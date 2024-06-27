@@ -2,11 +2,14 @@ import { useState, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { Button } from '@mui/material';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const HomeLayout = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [selectedTemplate, setSelectedTemplate] = useState('');
   const controls = useAnimation();
+  const router = useRouter();
 
   useEffect(() => {
     setShowPopup(true);
@@ -25,9 +28,15 @@ const HomeLayout = () => {
   };
 
   const handleTemplateSelection = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedTemplate = event.target.value;
+    setSelectedTemplate(event.target.value);
     console.log(`Selected template: ${selectedTemplate}`);
     // Add your logic for handling the selected template here
+  };
+
+  const handleNextStep = () => {
+    if (selectedTemplate !== null) {
+      router.push(`/builder?template=${selectedTemplate}`);
+    }
   };
 
   return (
@@ -114,7 +123,7 @@ const HomeLayout = () => {
                       className="inline-flex items-center justify-between w-full p-5 text-gray-900 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-500 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-900 hover:bg-gray-100 dark:text-white dark:bg-gray-600 dark:hover:bg-gray-500"
                     >
                       <div className="block">
-                        <div className="w-50 text-lg font-semibold">Template 1</div>
+                        <div className="w-full text-lg font-semibold">Template 1</div>
                         <img
                           src="/icons/Classic-Resume.jpg"
                           className="w-full h-auto"
@@ -144,21 +153,6 @@ const HomeLayout = () => {
                           alt="Template 1"
                         />
                       </div>
-                      <svg
-                        className="w-4 h-4 ms-3 rtl:rotate-180 text-gray-500 dark:text-gray-400"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 14 10"
-                      >
-                        <path
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M1 5h12m0 0L9 1m4 4L9 9"
-                        />
-                      </svg>
                     </label>
                   </div>
                   <div className="col-span-1">
@@ -182,21 +176,6 @@ const HomeLayout = () => {
                           alt="Template 1"
                         />
                       </div>
-                      <svg
-                        className="w-4 h-4 ms-3 rtl:rotate-180 text-gray-500 dark:text-gray-400"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 14 10"
-                      >
-                        <path
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M1 5h12m0 0L9 1m4 4L9 9"
-                        />
-                      </svg>
                     </label>
                   </div>
                 </div>
@@ -208,7 +187,10 @@ const HomeLayout = () => {
                 </div> */}
                 <Link href="/builder">
                   <div>
-                    <button className="text-white w-full inline-flexflex justify-center bg-teal-600 hover:bg-teal-700   focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:teal-blue-800 mt-4">
+                    <button
+                      className="text-white w-full inline-flexflex justify-center bg-teal-600 hover:bg-teal-700   focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:teal-blue-800 mt-4"
+                      onClick={handleNextStep}
+                    >
                       Next step
                     </button>
                   </div>
