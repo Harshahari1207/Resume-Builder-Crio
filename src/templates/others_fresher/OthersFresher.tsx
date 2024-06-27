@@ -104,9 +104,7 @@ export default function ProfessionalTemplate() {
           profiles={resumeData.basics.profiles}
           titleClassname="text-3xl font-bold"
         >
-          <hr/>
-          <BasicIntro basics={resumeData.basics} profiles={resumeData.basics.profiles} />
-          <hr/>
+          <BasicIntro basics={resumeData.basics} profiles={resumeData.basics.profiles} />  
         </Heading>
 
         <Section title="Skills" titleClassname="text-lg">
