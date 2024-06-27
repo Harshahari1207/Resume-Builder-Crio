@@ -204,7 +204,7 @@
 // export default HomeLayout;
 
 
-
+//change the ui
 
 import { useState, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
@@ -245,9 +245,9 @@ const HomeLayout = () => {
               <Button className='bg-teal-600 hover:bg-teal-700 text-white' variant="contained" onClick={handleChooseTemplate}>
                 Choose Template
               </Button>
-              <Button className='bg-red-500 hover:bg-red-600 text-white' variant="contained" onClick={handleClosePopup}>
+              {/* <Button className='bg-red-500 hover:bg-red-600 text-white' variant="contained" onClick={handleClosePopup}>
                 Close
-              </Button>
+              </Button> */}
             </div>
           </div>
         </motion.div>
