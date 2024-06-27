@@ -85,7 +85,7 @@ export function Section({
   const headerRef = useRef<HTMLDivElement | null>(null);
   const [spanWidth, setSpanWidth] = useState<number>(0);
   const [headerWidth, setHeaderWidth] = useState<number>(0);
-
+  let temp: number = 1;
   const calculateWidth = (): void => {
     if (spanRef.current) {
       const width = spanRef.current.offsetWidth;
@@ -107,7 +107,7 @@ export function Section({
       <div
         ref={headerRef}
         id="height-check-2"
-        className={`header flex justify-start items-center gap-1 w-full ${
+        className={`header flex-col flex justify-start ${temp==2 && 'items-center'} gap-1 w-full ${
           title === 'Achievements' ? 'height-check-2' : ''
         }`}
         title={title}
@@ -124,8 +124,8 @@ export function Section({
             style={{ width: `calc(${headerWidth}px - ${spanWidth}px)` }}
           ></span> */}
         </span>
+      {(temp === 1 || temp==2) && <hr className={`w-full`}/>}
       </div>
-
       {/* {profiles && <SocialIcons profiles={profiles} />} */}
 
       {children}
